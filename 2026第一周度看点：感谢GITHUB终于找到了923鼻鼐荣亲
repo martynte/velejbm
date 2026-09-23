@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+m.lanchouti.com/Article/details/34656271.sHtML<br>
+m.lanchouti.com/Article/details/94551332.sHtML<br>
+m.lanchouti.com/Article/details/91397449.sHtML<br>
+m.lanchouti.com/Article/details/65429811.sHtML<br>
+m.lanchouti.com/Article/details/46177658.sHtML<br>
+m.lanchouti.com/Article/details/79765723.sHtML<br>
+m.lanchouti.com/Article/details/05499307.sHtML<br>
+m.lanchouti.com/Article/details/02093121.sHtML<br>
+m.lanchouti.com/Article/details/12541132.sHtML<br>
+m.lanchouti.com/Article/details/42767005.sHtML<br>
+m.lanchouti.com/Article/details/05545331.sHtML<br>
+m.lanchouti.com/Article/details/05247703.sHtML<br>
+m.lanchouti.com/Article/details/58361441.sHtML<br>
+m.lanchouti.com/Article/details/72668574.sHtML<br>
+m.lanchouti.com/Article/details/54728926.sHtML<br>
+m.lanchouti.com/Article/details/51655406.sHtML<br>
+m.lanchouti.com/Article/details/46866804.sHtML<br>
+m.lanchouti.com/Article/details/20940255.sHtML<br>
+m.lanchouti.com/Article/details/13742115.sHtML<br>
+m.lanchouti.com/Article/details/49844008.sHtML<br>
+m.lanchouti.com/Article/details/67209233.sHtML<br>
+m.lanchouti.com/Article/details/09832144.sHtML<br>
+m.lanchouti.com/Article/details/31677188.sHtML<br>
+m.lanchouti.com/Article/details/32843744.sHtML<br>
+m.lanchouti.com/Article/details/56042935.sHtML<br>
+m.lanchouti.com/Article/details/43814663.sHtML<br>
+m.lanchouti.com/Article/details/57386740.sHtML<br>
+m.lanchouti.com/Article/details/94028495.sHtML<br>
+m.lanchouti.com/Article/details/40299830.sHtML<br>
+m.lanchouti.com/Article/details/05756547.sHtML<br>
+m.lanchouti.com/Article/details/29232896.sHtML<br>
+m.lanchouti.com/Article/details/36836371.sHtML<br>
+m.lanchouti.com/Article/details/87997599.sHtML<br>
+m.lanchouti.com/Article/details/56588858.sHtML<br>
+m.lanchouti.com/Article/details/48338413.sHtML<br>
+m.lanchouti.com/Article/details/16873218.sHtML<br>
+m.lanchouti.com/Article/details/59883374.sHtML<br>
+m.lanchouti.com/Article/details/02033142.sHtML<br>
+m.lanchouti.com/Article/details/35098081.sHtML<br>
+m.lanchouti.com/Article/details/05763368.sHtML<br>
+m.lanchouti.com/Article/details/40576045.sHtML<br>
+m.lanchouti.com/Article/details/42406959.sHtML<br>
+m.lanchouti.com/Article/details/61698605.sHtML<br>
+m.lanchouti.com/Article/details/53913476.sHtML<br>
+m.lanchouti.com/Article/details/45729808.sHtML<br>
+m.lanchouti.com/Article/details/72443840.sHtML<br>
+m.lanchouti.com/Article/details/61043818.sHtML<br>
+m.lanchouti.com/Article/details/54223581.sHtML<br>
+m.lanchouti.com/Article/details/02730681.sHtML<br>
+m.lanchouti.com/Article/details/86288528.sHtML<br>
+m.lanchouti.com/Article/details/90224369.sHtML<br>
+m.lanchouti.com/Article/details/09815892.sHtML<br>
+m.lanchouti.com/Article/details/57880762.sHtML<br>
+m.lanchouti.com/Article/details/68225684.sHtML<br>
+m.lanchouti.com/Article/details/37666270.sHtML<br>
+m.lanchouti.com/Article/details/64672615.sHtML<br>
+m.lanchouti.com/Article/details/87674888.sHtML<br>
+m.lanchouti.com/Article/details/27935851.sHtML<br>
+m.lanchouti.com/Article/details/38635591.sHtML<br>
+m.lanchouti.com/Article/details/75698553.sHtML<br>
+m.lanchouti.com/Article/details/25041306.sHtML<br>
+m.lanchouti.com/Article/details/30602606.sHtML<br>
+m.lanchouti.com/Article/details/15684769.sHtML<br>
+m.lanchouti.com/Article/details/18170340.sHtML<br>
+m.lanchouti.com/Article/details/38849608.sHtML<br>
+m.lanchouti.com/Article/details/71470632.sHtML<br>
+m.lanchouti.com/Article/details/78407915.sHtML<br>
+m.lanchouti.com/Article/details/93684522.sHtML<br>
+m.lanchouti.com/Article/details/94651077.sHtML<br>
+m.lanchouti.com/Article/details/87811951.sHtML<br>
+m.lanchouti.com/Article/details/80916992.sHtML<br>
+m.lanchouti.com/Article/details/67310244.sHtML<br>
+m.lanchouti.com/Article/details/95738049.sHtML<br>
+m.lanchouti.com/Article/details/15418219.sHtML<br>
+m.lanchouti.com/Article/details/79874668.sHtML<br>
+m.lanchouti.com/Article/details/72087250.sHtML<br>
+m.lanchouti.com/Article/details/35933297.sHtML<br>
+m.lanchouti.com/Article/details/57758401.sHtML<br>
+m.lanchouti.com/Article/details/50294599.sHtML<br>
+m.lanchouti.com/Article/details/75136512.sHtML<br>
+m.lanchouti.com/Article/details/24272776.sHtML<br>
+m.lanchouti.com/Article/details/10585098.sHtML<br>
+m.lanchouti.com/Article/details/98064934.sHtML<br>
+m.lanchouti.com/Article/details/72409640.sHtML<br>
+m.lanchouti.com/Article/details/82169963.sHtML<br>
+m.lanchouti.com/Article/details/28461496.sHtML<br>
+m.lanchouti.com/Article/details/10935962.sHtML<br>
+m.lanchouti.com/Article/details/02652309.sHtML<br>
+m.lanchouti.com/Article/details/13335413.sHtML<br>
+m.lanchouti.com/Article/details/16878074.sHtML<br>
+m.lanchouti.com/Article/details/68954962.sHtML<br>
+m.lanchouti.com/Article/details/94324682.sHtML<br>
+m.lanchouti.com/Article/details/94059188.sHtML<br>
+m.lanchouti.com/Article/details/86476539.sHtML<br>
+m.lanchouti.com/Article/details/79169025.sHtML<br>
+m.lanchouti.com/Article/details/21988811.sHtML<br>
+m.lanchouti.com/Article/details/27987146.sHtML<br>
+m.lanchouti.com/Article/details/87928711.sHtML<br>
+m.lanchouti.com/Article/details/49376870.sHtML<br>
+m.lanchouti.com/Article/details/16094788.sHtML<br>
+m.lanchouti.com/Article/details/16897913.sHtML<br>
+m.lanchouti.com/Article/details/79697468.sHtML<br>
+m.lanchouti.com/Article/details/93084351.sHtML<br>
+m.lanchouti.com/Article/details/84655022.sHtML<br>
+m.lanchouti.com/Article/details/31349523.sHtML<br>
+m.lanchouti.com/Article/details/35725628.sHtML<br>
+m.lanchouti.com/Article/details/50860714.sHtML<br>
+m.lanchouti.com/Article/details/71214327.sHtML<br>
+m.lanchouti.com/Article/details/09465998.sHtML<br>
+m.lanchouti.com/Article/details/61768504.sHtML<br>
+m.lanchouti.com/Article/details/22432667.sHtML<br>
+m.lanchouti.com/Article/details/83554603.sHtML<br>
+m.lanchouti.com/Article/details/61517422.sHtML<br>
+m.lanchouti.com/Article/details/15752916.sHtML<br>
+m.lanchouti.com/Article/details/83150503.sHtML<br>
+m.lanchouti.com/Article/details/31699444.sHtML<br>
+m.lanchouti.com/Article/details/89865927.sHtML<br>
+m.lanchouti.com/Article/details/78616636.sHtML<br>
+m.lanchouti.com/Article/details/27524827.sHtML<br>
+m.lanchouti.com/Article/details/67615573.sHtML<br>
+m.lanchouti.com/Article/details/13323335.sHtML<br>
+m.lanchouti.com/Article/details/63494253.sHtML<br>
+m.lanchouti.com/Article/details/50262325.sHtML<br>
+m.lanchouti.com/Article/details/54694087.sHtML<br>
+m.lanchouti.com/Article/details/76587010.sHtML<br>
+m.lanchouti.com/Article/details/75736392.sHtML<br>
+m.lanchouti.com/Article/details/11766673.sHtML<br>
+m.lanchouti.com/Article/details/72413009.sHtML<br>
+m.lanchouti.com/Article/details/02902297.sHtML<br>
+m.lanchouti.com/Article/details/83588465.sHtML<br>
+m.lanchouti.com/Article/details/75548061.sHtML<br>
+m.lanchouti.com/Article/details/08031748.sHtML<br>
+m.lanchouti.com/Article/details/01066801.sHtML<br>
+m.lanchouti.com/Article/details/59844610.sHtML<br>
+m.lanchouti.com/Article/details/16583750.sHtML<br>
+m.lanchouti.com/Article/details/31002599.sHtML<br>
+m.lanchouti.com/Article/details/42775164.sHtML<br>
+m.lanchouti.com/Article/details/83186661.sHtML<br>
+m.lanchouti.com/Article/details/53110961.sHtML<br>
+m.lanchouti.com/Article/details/17858752.sHtML<br>
+m.lanchouti.com/Article/details/50911487.sHtML<br>
+m.lanchouti.com/Article/details/05708580.sHtML<br>
+m.lanchouti.com/Article/details/28150843.sHtML<br>
+m.lanchouti.com/Article/details/37520181.sHtML<br>
+m.lanchouti.com/Article/details/27662024.sHtML<br>
+m.lanchouti.com/Article/details/72074445.sHtML<br>
+m.lanchouti.com/Article/details/53238095.sHtML<br>
+m.lanchouti.com/Article/details/31165035.sHtML<br>
+m.lanchouti.com/Article/details/86170685.sHtML<br>
+m.lanchouti.com/Article/details/65136531.sHtML<br>
+m.lanchouti.com/Article/details/20844097.sHtML<br>
+m.lanchouti.com/Article/details/01039396.sHtML<br>
+m.lanchouti.com/Article/details/19709528.sHtML<br>
+m.lanchouti.com/Article/details/02149509.sHtML<br>
+m.lanchouti.com/Article/details/15787481.sHtML<br>
+m.lanchouti.com/Article/details/98366433.sHtML<br>
+m.lanchouti.com/Article/details/70562849.sHtML<br>
+m.lanchouti.com/Article/details/50941963.sHtML<br>
+m.lanchouti.com/Article/details/04333811.sHtML<br>
+m.lanchouti.com/Article/details/78872960.sHtML<br>
+m.lanchouti.com/Article/details/53429520.sHtML<br>
+m.lanchouti.com/Article/details/75011095.sHtML<br>
+m.lanchouti.com/Article/details/38787113.sHtML<br>
+m.lanchouti.com/Article/details/89947192.sHtML<br>
+m.lanchouti.com/Article/details/76876180.sHtML<br>
+m.lanchouti.com/Article/details/02812204.sHtML<br>
+m.lanchouti.com/Article/details/17676753.sHtML<br>
+m.lanchouti.com/Article/details/13218410.sHtML<br>
+m.lanchouti.com/Article/details/89814963.sHtML<br>
+m.lanchouti.com/Article/details/57213566.sHtML<br>
+m.lanchouti.com/Article/details/48328315.sHtML<br>
+m.lanchouti.com/Article/details/65792335.sHtML<br>
+m.lanchouti.com/Article/details/50681403.sHtML<br>
+m.lanchouti.com/Article/details/80243707.sHtML<br>
+m.lanchouti.com/Article/details/61336561.sHtML<br>
+m.lanchouti.com/Article/details/78449818.sHtML<br>
+m.lanchouti.com/Article/details/75079204.sHtML<br>
+m.lanchouti.com/Article/details/23844434.sHtML<br>
+m.lanchouti.com/Article/details/12872684.sHtML<br>
+m.lanchouti.com/Article/details/10378844.sHtML<br>
+m.lanchouti.com/Article/details/43019563.sHtML<br>
+m.lanchouti.com/Article/details/71915299.sHtML<br>
+m.lanchouti.com/Article/details/18177921.sHtML<br>
+m.lanchouti.com/Article/details/87147629.sHtML<br>
+m.lanchouti.com/Article/details/27362523.sHtML<br>
+m.lanchouti.com/Article/details/28923564.sHtML<br>
+m.lanchouti.com/Article/details/37839108.sHtML<br>
+m.lanchouti.com/Article/details/35470049.sHtML<br>
+m.lanchouti.com/Article/details/44062961.sHtML<br>
+m.lanchouti.com/Article/details/94676036.sHtML<br>
+m.lanchouti.com/Article/details/87924088.sHtML<br>
+m.lanchouti.com/Article/details/57005710.sHtML<br>
+m.lanchouti.com/Article/details/76891858.sHtML<br>
+m.lanchouti.com/Article/details/54008980.sHtML<br>
+m.lanchouti.com/Article/details/98339509.sHtML<br>
+m.lanchouti.com/Article/details/13523444.sHtML<br>
+m.lanchouti.com/Article/details/71358370.sHtML<br>
+m.lanchouti.com/Article/details/37282735.sHtML<br>
+m.lanchouti.com/Article/details/01039814.sHtML<br>
+m.lanchouti.com/Article/details/35181040.sHtML<br>
+m.lanchouti.com/Article/details/24221422.sHtML<br>
+m.lanchouti.com/Article/details/31069351.sHtML<br>
+m.lanchouti.com/Article/details/17910992.sHtML<br>
+m.lanchouti.com/Article/details/72584953.sHtML<br>
+m.lanchouti.com/Article/details/49288628.sHtML<br>
+m.lanchouti.com/Article/details/20200503.sHtML<br>
+m.lanchouti.com/Article/details/80252403.sHtML<br>
+m.lanchouti.com/Article/details/64432410.sHtML<br>
+m.lanchouti.com/Article/details/48701638.sHtML<br>
+m.lanchouti.com/Article/details/34623799.sHtML<br>
+m.lanchouti.com/Article/details/85114037.sHtML<br>
+m.lanchouti.com/Article/details/09172660.sHtML<br>
+m.lanchouti.com/Article/details/19403909.sHtML<br>
+m.lanchouti.com/Article/details/43116991.sHtML<br>
+m.lanchouti.com/Article/details/57830240.sHtML<br>
+m.lanchouti.com/Article/details/81634589.sHtML<br>
+m.lanchouti.com/Article/details/57291163.sHtML<br>
+m.lanchouti.com/Article/details/02854551.sHtML<br>
+m.lanchouti.com/Article/details/70647148.sHtML<br>
+m.lanchouti.com/Article/details/94355544.sHtML<br>
+m.lanchouti.com/Article/details/05362773.sHtML<br>
+m.lanchouti.com/Article/details/94398797.sHtML<br>
+m.lanchouti.com/Article/details/23802394.sHtML<br>
+m.lanchouti.com/Article/details/01693003.sHtML<br>
+m.lanchouti.com/Article/details/97225833.sHtML<br>
+m.lanchouti.com/Article/details/38703594.sHtML<br>
+m.lanchouti.com/Article/details/49827444.sHtML<br>
+m.lanchouti.com/Article/details/27568810.sHtML<br>
+m.lanchouti.com/Article/details/67521713.sHtML<br>
+m.lanchouti.com/Article/details/83954484.sHtML<br>
+m.lanchouti.com/Article/details/98336855.sHtML<br>
+m.lanchouti.com/Article/details/80584551.sHtML<br>
+m.lanchouti.com/Article/details/79747620.sHtML<br>
+m.lanchouti.com/Article/details/06844951.sHtML<br>
+m.lanchouti.com/Article/details/97692513.sHtML<br>
+m.lanchouti.com/Article/details/49883862.sHtML<br>
+m.lanchouti.com/Article/details/29173992.sHtML<br>
+m.lanchouti.com/Article/details/89251306.sHtML<br>
+m.lanchouti.com/Article/details/54698116.sHtML<br>
+m.lanchouti.com/Article/details/94217692.sHtML<br>
+m.lanchouti.com/Article/details/78044077.sHtML<br>
+m.lanchouti.com/Article/details/13258130.sHtML<br>
+m.lanchouti.com/Article/details/36437314.sHtML<br>
+m.lanchouti.com/Article/details/04955368.sHtML<br>
+m.lanchouti.com/Article/details/39132877.sHtML<br>
+m.lanchouti.com/Article/details/20994110.sHtML<br>
+m.lanchouti.com/Article/details/79703874.sHtML<br>
+m.lanchouti.com/Article/details/79626669.sHtML<br>
+m.lanchouti.com/Article/details/54988793.sHtML<br>
+m.lanchouti.com/Article/details/50998321.sHtML<br>
+m.lanchouti.com/Article/details/08300092.sHtML<br>
+m.lanchouti.com/Article/details/86512336.sHtML<br>
+m.lanchouti.com/Article/details/35709843.sHtML<br>
+m.lanchouti.com/Article/details/29870442.sHtML<br>
+m.lanchouti.com/Article/details/49473043.sHtML<br>
+m.lanchouti.com/Article/details/72394406.sHtML<br>
+m.lanchouti.com/Article/details/87118421.sHtML<br>
+m.lanchouti.com/Article/details/71011311.sHtML<br>
+m.lanchouti.com/Article/details/16847046.sHtML<br>
+m.lanchouti.com/Article/details/31451441.sHtML<br>
+m.lanchouti.com/Article/details/12146796.sHtML<br>
+m.lanchouti.com/Article/details/75040604.sHtML<br>
+m.lanchouti.com/Article/details/19130225.sHtML<br>
+m.lanchouti.com/Article/details/90365042.sHtML<br>
+m.lanchouti.com/Article/details/08689574.sHtML<br>
+m.lanchouti.com/Article/details/83555176.sHtML<br>
+m.lanchouti.com/Article/details/27964521.sHtML<br>
+m.lanchouti.com/Article/details/91379817.sHtML<br>
+m.lanchouti.com/Article/details/04934069.sHtML<br>
+m.lanchouti.com/Article/details/64355585.sHtML<br>
+m.lanchouti.com/Article/details/73858728.sHtML<br>
+m.lanchouti.com/Article/details/91333938.sHtML<br>
+m.lanchouti.com/Article/details/07369683.sHtML<br>
+m.lanchouti.com/Article/details/48655811.sHtML<br>
+m.lanchouti.com/Article/details/08732984.sHtML<br>
+m.lanchouti.com/Article/details/66584303.sHtML<br>
+m.lanchouti.com/Article/details/20640132.sHtML<br>
+m.lanchouti.com/Article/details/38158358.sHtML<br>
+m.lanchouti.com/Article/details/15467014.sHtML<br>
+m.lanchouti.com/Article/details/20669165.sHtML<br>
+m.lanchouti.com/Article/details/91466633.sHtML<br>
+m.lanchouti.com/Article/details/72870203.sHtML<br>
+m.lanchouti.com/Article/details/69823513.sHtML<br>
+m.lanchouti.com/Article/details/69098843.sHtML<br>
+m.lanchouti.com/Article/details/65713339.sHtML<br>
+m.lanchouti.com/Article/details/65364457.sHtML<br>
+m.lanchouti.com/Article/details/32069657.sHtML<br>
+m.lanchouti.com/Article/details/83985291.sHtML<br>
+m.lanchouti.com/Article/details/53959806.sHtML<br>
+m.lanchouti.com/Article/details/31392874.sHtML<br>
+m.lanchouti.com/Article/details/71347531.sHtML<br>
+m.lanchouti.com/Article/details/19090003.sHtML<br>
+m.lanchouti.com/Article/details/98063192.sHtML<br>
+m.lanchouti.com/Article/details/53354822.sHtML<br>
+m.lanchouti.com/Article/details/81374859.sHtML<br>
+m.lanchouti.com/Article/details/86881423.sHtML<br>
+m.lanchouti.com/Article/details/17939222.sHtML<br>
+m.lanchouti.com/Article/details/24622031.sHtML<br>
+m.lanchouti.com/Article/details/08702055.sHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2402:25:05
